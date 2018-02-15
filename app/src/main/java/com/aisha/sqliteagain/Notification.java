@@ -24,8 +24,6 @@ public class Notification {
         this.image = image;
     }
 
-
-
    /* public String getDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
                 "dd - MMM - yyyy    HH:mm  a", Locale.getDefault());
