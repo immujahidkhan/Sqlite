@@ -65,6 +65,4 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
             imageView = itemView.findViewById(R.id.txtimageView);
         }
     }
-
-
 }

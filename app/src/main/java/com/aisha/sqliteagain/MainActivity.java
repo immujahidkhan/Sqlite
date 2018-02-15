@@ -20,8 +20,10 @@ import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     EditText edtTitle, edtDetails;
     Button btnAdd, btnList , btnChoose;
     Calendar calendar;
-    Long date ;
+    String date ;
     Notification list;
     ImageView imageView;
 
@@ -44,11 +46,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView (R.layout.activity_main);
 
         calendar = Calendar.getInstance();
-        date = calendar.getTimeInMillis();
+        date = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss").format(new Date());
         init ();
 
         sqLiteHelper = new SQLiteHelper(this, "witorbitDB.sqlite", null, 1);
-        sqLiteHelper.queryData("CREATE TABLE IF NOT EXISTS NOTIFICATION(Id INTEGER PRIMARY KEY AUTOINCREMENT , title VARCHAR, details VARCHAR , dateTime INTEGER , image BLOB) ");
+        sqLiteHelper.queryData("CREATE TABLE IF NOT EXISTS NOTIFICATION(Id INTEGER PRIMARY KEY AUTOINCREMENT , title VARCHAR, details VARCHAR , dateTime VARCHAR , image BLOB) ");
 
         btnChoose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     sqLiteHelper.insertData (
                             edtTitle.getText ().toString ().trim (),
                             edtDetails.getText ().toString ().trim (),
-                            date.longValue(),
+                            date,
                             imageViewToByte(imageView)
 
                     );

@@ -21,7 +21,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         SQLiteDatabase database = getWritableDatabase ();
         database.execSQL (sql);
     }
-    public void insertData(String title, String details, Long dateTime , byte[] image){
+    public void insertData(String title, String details, String dateTime , byte[] image){
         SQLiteDatabase database = getWritableDatabase ();
         String sql = "INSERT INTO NOTIFICATION VALUES(NULL, ? , ? ,? ,? )";
 
@@ -30,7 +30,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
         statement.bindString (1, title);
         statement.bindString (2,details);
-        statement.bindLong(3, dateTime);
+        statement.bindString(3, dateTime);
         statement.bindBlob(4, image);
 
         statement.executeInsert ();

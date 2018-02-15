@@ -13,10 +13,10 @@ public class Notification {
     int id;
     String title;
     String details;
-    Long dateTime;
+    String dateTime;
     private byte[] image;
 
-    public Notification(int id, String title, String details, Long dateTime, byte[] image) {
+    public Notification(int id, String title, String details, String dateTime, byte[] image) {
         this.id = id;
         this.title = title;
         this.details = details;
@@ -26,14 +26,18 @@ public class Notification {
 
 
 
-    public String getDateTime() {
+   /* public String getDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
                 "dd - MMM - yyyy    HH:mm  a", Locale.getDefault());
         Date date = new Date();
         return dateFormat.format(date);
+    }*/
+
+    public String getDateTime() {
+        return dateTime;
     }
 
-    public void setDateTime(Long dateTime) {
+    public void setDateTime(String dateTime) {
 
 
         this.dateTime = dateTime;

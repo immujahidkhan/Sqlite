@@ -53,7 +53,7 @@ public class ListActivity extends AppCompatActivity {
             int id = cursor.getInt(0);
             String title = cursor.getString(1);
             String details = cursor.getString(2);
-            Long dateTime = cursor.getLong(3);
+            String dateTime = cursor.getString(3);
             byte[] image = cursor.getBlob(4);
             list.add(new Notification(id, title, details, dateTime, image));
             Log.e("SQL VALUES", title);
@@ -195,7 +195,7 @@ ImageView imageViewNoti;
             int id = cursor.getInt(0);
             String title = cursor.getString(1);
             String details = cursor.getString(2);
-            Long dateTime = cursor.getLong(3);
+            String dateTime = cursor.getString(3);
             byte[] image = cursor.getBlob(4);
             list.add(new Notification(id, title, details, dateTime, image));
         }
