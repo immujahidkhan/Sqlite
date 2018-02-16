@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     ImageView imageView;
 
     final int REQUEST_CODE_GALLERY = 999;
-
     public static SQLiteHelper sqLiteHelper;
 
     /* public String getDateTime() {
