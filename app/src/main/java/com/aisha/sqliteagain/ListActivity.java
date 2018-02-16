@@ -46,30 +46,20 @@ public class ListActivity extends AppCompatActivity {
         recycler_View.setLayoutManager(new LinearLayoutManager(this));
         recycler_View.setHasFixedSize(true);
 
-        //get data from SQLite
-        Cursor cursor = sqLiteHelper.getData("SELECT * FROM NOTIFICATION");
-        //list.clear();
-        while (cursor.moveToNext()) {
-            int id = cursor.getInt(0);
-            String title = cursor.getString(1);
-            String details = cursor.getString(2);
-            String dateTime = cursor.getString(3);
-            byte[] image = cursor.getBlob(4);
-            list.add(new Notification(id, title, details, dateTime, image));
-            Log.e("SQL VALUES", title);
-        }
-
-        recycler_View.setAdapter(new NotificationListAdapter(this, list));
+      fetchDataSQL();
 
         recycler_View.addOnItemTouchListener(new RecyclerItemClickListener(this, recycler_View, new RecyclerItemClickListener.OnItemClickListener()
         {
             @Override
             public void onItemClick(View view, int position) {
-              adapter.notifyDataSetChanged();
+                fetchDataSQL();
+                adapter.notifyDataSetChanged();
+
             }
 
             @Override
             public boolean onLongItemClick(View view, final int position) {
+
                 adapter.notifyDataSetChanged();
 
                 CharSequence[] items = {"Update", "Delete"};
@@ -108,7 +98,25 @@ public class ListActivity extends AppCompatActivity {
         }) );
 
     }
-ImageView imageViewNoti;
+
+    private void fetchDataSQL() {
+        //get data from SQLite
+        Cursor cursor = sqLiteHelper.getData("SELECT * FROM NOTIFICATION");
+        list.clear();
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            String title = cursor.getString(1);
+            String details = cursor.getString(2);
+            String dateTime = cursor.getString(3);
+            byte[] image = cursor.getBlob(4);
+            list.add(new Notification(id, title, details, dateTime, image));
+            Log.e("SQL VALUES", title);
+        }
+
+        recycler_View.setAdapter(new NotificationListAdapter(this, list));
+    }
+
+    ImageView imageViewNoti;
     private void showDialogUpdate(Activity activity, final int position) {
 
         final Dialog dialog = new Dialog(activity);
@@ -150,7 +158,9 @@ ImageView imageViewNoti;
                             MainActivity.imageViewToByte(imageViewNoti)
                             ,position
                     );
+                    fetchDataSQL();
                     dialog.dismiss();
+
                     Toast.makeText(getApplicationContext(), "Update successfully!!!", Toast.LENGTH_SHORT).show();
                 } catch (Exception error) {
                     Log.e("Update error", error.getMessage());
