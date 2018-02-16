@@ -24,22 +24,14 @@ public class Notification {
         this.image = image;
     }
 
-   /* public String getDateTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "dd - MMM - yyyy    HH:mm  a", Locale.getDefault());
-        Date date = new Date();
-        return dateFormat.format(date);
-    }*/
+
 
     public String getDateTime() {
         return dateTime;
     }
     public void setDateTime(String dateTime) {
-
-
         this.dateTime = dateTime;
     }
-
 
     public String getTitle() {
         return title;

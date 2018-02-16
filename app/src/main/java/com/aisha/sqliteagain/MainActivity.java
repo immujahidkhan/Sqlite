@@ -39,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
 
     public static SQLiteHelper sqLiteHelper;
 
+    /* public String getDateTime() {
+           SimpleDateFormat dateFormat = new SimpleDateFormat(
+                   "dd - MMM - yyyy    HH:mm  a", Locale.getDefault());
+           Date date = new Date();
+           return dateFormat.format(date);
+       }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                             imageViewToByte(imageView)
 
                     );
-                    Toast.makeText (getApplicationContext (), "Added Successfully !", Toast.LENGTH_SHORT).show ();
+                    Toast.makeText (getApplicationContext (), "Added Successfully !!", Toast.LENGTH_SHORT).show ();
                     edtTitle.setText ("");
                     edtDetails.setText ("");
                     imageView.setImageResource(R.mipmap.ic_launcher);
